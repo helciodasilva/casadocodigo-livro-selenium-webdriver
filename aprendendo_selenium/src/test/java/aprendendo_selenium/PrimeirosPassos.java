@@ -3,7 +3,9 @@ package aprendendo_selenium;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PrimeirosPassos {
@@ -25,8 +27,12 @@ public class PrimeirosPassos {
 
 	@Test
 	public void teste() {
-		System.out.println(driver.getTitle());
-		System.out.println(driver.getCurrentUrl());
+		WebElement caixaPesquisa = driver.findElement(By.xpath("//*[@id='q']"));
+		caixaPesquisa.clear(); // nesse caso nem precisa, mas apenas para treinar
+		caixaPesquisa.sendKeys("teste");
+
+		WebElement botaoEntrar = driver.findElement(By.id("idDoBotao"));
+		botaoEntrar.click();
 	}
 
 	@After
