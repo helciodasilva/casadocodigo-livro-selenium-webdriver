@@ -1,4 +1,4 @@
-package aprendendo_selenium;
+package aprendendoselenium;
 
 import org.junit.After;
 import org.junit.Before;
