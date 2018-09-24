@@ -1,6 +1,7 @@
 package aprendendoselenium;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -33,6 +34,17 @@ public class PrimeirosPassos {
 
 		WebElement botaoEntrar = driver.findElement(By.id("idDoBotao"));
 		botaoEntrar.click();
+	}
+
+	@Test
+	public void validarTitulo() {
+		//ACT
+		String tituloAtual = driver.getTitle();
+		String tituloEsperado = "Google";
+
+		// Assert
+		Assert.assertTrue("não são iguais", tituloAtual.equals(tituloEsperado));
+		Assert.assertEquals("são diferentes", tituloAtual, tituloEsperado);
 	}
 
 	@After
