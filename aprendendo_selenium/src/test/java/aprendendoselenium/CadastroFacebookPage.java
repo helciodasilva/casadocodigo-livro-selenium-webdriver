@@ -1,7 +1,15 @@
 package aprendendoselenium;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 public class CadastroFacebookPage {
 
@@ -22,8 +30,16 @@ public class CadastroFacebookPage {
 	}
 
 	public CadastroFacebookPage preencheUsuario(String usu) {
-		driver.findElement(By.id("email")).sendKeys(usu);
-		return this;
+    	
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        		.withTimeout(10, TimeUnit.SECONDS)
+        		.pollingEvery(10, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
+        WebElement usuario = wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
+        
+        usuario.sendKeys(usu);        
+        return this;
 	}
 
 	public CadastroFacebookPage preencheSenha(String senha) {
